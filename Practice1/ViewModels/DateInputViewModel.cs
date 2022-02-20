@@ -39,99 +39,10 @@ namespace DateCheck.ViewModels
         }
 
         public string ChineseZodiacSign { get => chineseZodiacSign; set => chineseZodiacSign = value; }
-        public string WesternZodiacSign { get => westernZodiacSign; set => westernZodiacSign = value; }
+        public string ZodiacSign { get => westernZodiacSign; set => westernZodiacSign = value; }
         public int Age { get => age; set => age = value; }
         #endregion
-        private void zod(DateTime dt)
-        {
-            switch (dt.Month)
-            {
-                case 1:
-                    if (dt.Day < 21)
-                        WesternZodiacSign = "Capricorn";
-                    else
-                        WesternZodiacSign = "Aquarius";
-                    break;
-
-                case 2:
-                    if (dt.Day < 20)
-                        WesternZodiacSign = "Aquarius";
-                    else
-                        WesternZodiacSign = "Pisces";
-                    break;
-
-                case 3:
-                    if (dt.Day < 21)
-                        WesternZodiacSign = "Pisces";
-                    else
-                        WesternZodiacSign = "Aries";
-                    break;
-
-                case 4:
-                    if (dt.Day < 21)
-                        WesternZodiacSign = "Aries";
-                    else
-                        WesternZodiacSign = "Taurus";
-                    break;
-
-                case 5:
-                    if (dt.Day < 22)
-                        WesternZodiacSign = "Taurus";
-                    else
-                        WesternZodiacSign = "Gemini";
-                    break;
-
-                case 6:
-                    if (dt.Day < 22)
-                        WesternZodiacSign = "Gemini";
-                    else
-                        WesternZodiacSign = "Cancer";
-                    break;
-
-                case 17:
-                    if (dt.Day < 23)
-                        WesternZodiacSign = "Cancer";
-                    else
-                        WesternZodiacSign = "Leo";
-                    break;
-
-                case 8:
-                    if (dt.Day < 22)
-                        WesternZodiacSign = "Leo";
-                    else
-                        WesternZodiacSign = "Virgo";
-                    break;
-
-                case 9:
-                    if (dt.Day < 24)
-                        WesternZodiacSign = "Virgo";
-                    else
-                        WesternZodiacSign = "Libra";
-                    break;
-
-                case 10:
-                    if (dt.Day < 24)
-                        WesternZodiacSign = "Libra";
-                    else
-                        WesternZodiacSign = "Scorpio";
-                    break;
-
-                case 11:
-                    if (dt.Day < 24)
-                        WesternZodiacSign = "Scorpio";
-                    else
-                        WesternZodiacSign = "Sagittarius";
-                    break;
-
-                case 12:
-                    if (dt.Day < 23)
-                        WesternZodiacSign = "Sagittarius";
-                    else
-                        WesternZodiacSign = "Capricorn";
-                    break;
-
-            }
-        }
+       
         private void chineezeZod(DateTime dt)
         {
             switch ((dt.Year - 4) % 12)
@@ -186,6 +97,96 @@ namespace DateCheck.ViewModels
 
             }
         }
+        private void zod(DateTime dt)
+        {
+            switch (dt.Month)
+            {
+                case 1:
+                    if (dt.Day < 21)
+                        ZodiacSign = "Capricorn";
+                    else
+                        ZodiacSign = "Aquarius";
+                    break;
+
+                case 2:
+                    if (dt.Day < 20)
+                        ZodiacSign = "Aquarius";
+                    else
+                        ZodiacSign = "Pisces";
+                    break;
+
+                case 3:
+                    if (dt.Day < 21)
+                        ZodiacSign = "Pisces";
+                    else
+                        ZodiacSign = "Aries";
+                    break;
+
+                case 4:
+                    if (dt.Day < 21)
+                        ZodiacSign = "Aries";
+                    else
+                        ZodiacSign = "Taurus";
+                    break;
+
+                case 5:
+                    if (dt.Day < 22)
+                        ZodiacSign = "Taurus";
+                    else
+                        ZodiacSign = "Gemini";
+                    break;
+
+                case 6:
+                    if (dt.Day < 22)
+                        ZodiacSign = "Gemini";
+                    else
+                        ZodiacSign = "Cancer";
+                    break;
+
+                case 17:
+                    if (dt.Day < 23)
+                        ZodiacSign = "Cancer";
+                    else
+                        ZodiacSign = "Leo";
+                    break;
+
+                case 8:
+                    if (dt.Day < 22)
+                        ZodiacSign = "Leo";
+                    else
+                        ZodiacSign = "Virgo";
+                    break;
+
+                case 9:
+                    if (dt.Day < 24)
+                        ZodiacSign = "Virgo";
+                    else
+                        ZodiacSign = "Libra";
+                    break;
+
+                case 10:
+                    if (dt.Day < 24)
+                        ZodiacSign = "Libra";
+                    else
+                        ZodiacSign = "Scorpio";
+                    break;
+
+                case 11:
+                    if (dt.Day < 24)
+                        ZodiacSign = "Scorpio";
+                    else
+                        ZodiacSign = "Sagittarius";
+                    break;
+
+                case 12:
+                    if (dt.Day < 23)
+                        ZodiacSign = "Sagittarius";
+                    else
+                        ZodiacSign = "Capricorn";
+                    break;
+
+            }
+        }
 
         private void AgeOutput()
         {
@@ -206,7 +207,7 @@ namespace DateCheck.ViewModels
             //(використайте клас MessageBox для відображення)
             if (Age < 0 || Age > 135)
             {
-                throw new ArgumentException($"Birth date {date} is wrong!");
+                MessageBox.Show("Birth date is wrong!");
             }
 
             //Якщо сьогодні день народження користувача, виведіть приємне повідомлення.
