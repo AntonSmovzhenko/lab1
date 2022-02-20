@@ -162,6 +162,7 @@ namespace DateCheck.ViewModels
                     break;
             }
         }
+
         private void AgeOutput()
         {
             var date = dateInput;
@@ -173,7 +174,9 @@ namespace DateCheck.ViewModels
             Age = ((currentDate.Month - date.DateTime.Month) < 1) ? currentDate.Year - date.DateTime.Year - 1 :
                 (sameMonth ? ((currentDate.Day - date.DateTime.Day) < 1 ? (currentDate.Year - date.DateTime.Year - 1) : (currentDate.Year - date.DateTime.Year)) : (currentDate.Year - date.DateTime.Year));
             if (Age < 0 || Age > 135)
+            {
                 throw new ArgumentException($"Birth date {date} is wrong!");
+            }
             if (sameMonth && sameDay)
                 MessageBox.Show($"Happy {Age}th birthday!");
             chineseZod(date.DateTime);

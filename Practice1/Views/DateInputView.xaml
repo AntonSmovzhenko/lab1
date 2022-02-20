@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:DateCheck.Views"
-             xmlns:viewModels="clr-namespace:DateCheck.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
     <Grid>
@@ -19,6 +17,7 @@
             <RowDefinition Height="Auto" MinHeight="25.96"></RowDefinition>
             <RowDefinition Height="Auto" MinHeight="25"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <TextBlock Grid.Row ="0" Text="Your birth date:" Margin="0,0,0,4"></TextBlock>
         <DatePicker Grid.Row="1" x:Name="TbDate" SelectedDate="{Binding SelectedDate, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" Margin="5,5,5,5"/>
         <TextBlock Grid.Row ="2" Text="Age:" Margin="0,0,0,4"/>

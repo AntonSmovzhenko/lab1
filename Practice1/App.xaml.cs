@@ -2,7 +2,7 @@
 
 namespace Practice1
 {
-    /// Interaction logic for App.xaml
+    ///App.xaml
     public partial class App : Application
     {
     }
