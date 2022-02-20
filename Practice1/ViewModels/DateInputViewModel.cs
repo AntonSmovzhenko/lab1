@@ -200,7 +200,8 @@ namespace DateCheck.ViewModels
             //Виведіть вік користувача в TextBlock
             Age = ((currentDate.Month - date.DateTime.Month) < 1) ? currentDate.Year - date.DateTime.Year - 1 :
                 (sameMonth ? ((currentDate.Day - date.DateTime.Day) < 1 ? (currentDate.Year - date.DateTime.Year - 1) :
-                (currentDate.Year - date.DateTime.Year)) : (currentDate.Year - date.DateTime.Year));
+                (currentDate.Year - date.DateTime.Year)) :
+                (currentDate.Year - date.DateTime.Year));
 
             //Перевірте, чи вік користувача правильний. Наприклад,
             //якщо користувач ще не народився чи йому більше ніж 135 років, виведіть повідомлення про помилку.
