@@ -143,7 +143,7 @@ namespace DateCheck.ViewModels
                         ZodiacSign = "Cancer";
                     break;
 
-                case 17:
+                case 7:
                     if (dt.Day < 23)
                         ZodiacSign = "Cancer";
                     else
