@@ -2,9 +2,7 @@
 
 namespace Practice1
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    ///MainWindow.xaml
     public partial class MainWindow : Window
     {
         public MainWindow()
