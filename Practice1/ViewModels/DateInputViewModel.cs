@@ -42,7 +42,7 @@ namespace DateCheck.ViewModels
         public string WesternZodiacSign { get => westernZodiacSign; set => westernZodiacSign = value; }
         public int Age { get => age; set => age = value; }
         #endregion
-        private void westernZod(DateTime dt)
+        private void zod(DateTime dt)
         {
             switch (dt.Month)
             {
@@ -52,114 +52,138 @@ namespace DateCheck.ViewModels
                     else
                         WesternZodiacSign = "Aquarius";
                     break;
+
                 case 2:
                     if (dt.Day < 20)
                         WesternZodiacSign = "Aquarius";
                     else
                         WesternZodiacSign = "Pisces";
                     break;
+
                 case 3:
                     if (dt.Day < 21)
                         WesternZodiacSign = "Pisces";
                     else
                         WesternZodiacSign = "Aries";
                     break;
+
                 case 4:
                     if (dt.Day < 21)
                         WesternZodiacSign = "Aries";
                     else
                         WesternZodiacSign = "Taurus";
                     break;
+
                 case 5:
                     if (dt.Day < 22)
                         WesternZodiacSign = "Taurus";
                     else
                         WesternZodiacSign = "Gemini";
                     break;
+
                 case 6:
                     if (dt.Day < 22)
                         WesternZodiacSign = "Gemini";
                     else
                         WesternZodiacSign = "Cancer";
                     break;
+
                 case 17:
                     if (dt.Day < 23)
                         WesternZodiacSign = "Cancer";
                     else
                         WesternZodiacSign = "Leo";
                     break;
+
                 case 8:
                     if (dt.Day < 22)
                         WesternZodiacSign = "Leo";
                     else
                         WesternZodiacSign = "Virgo";
                     break;
+
                 case 9:
                     if (dt.Day < 24)
                         WesternZodiacSign = "Virgo";
                     else
                         WesternZodiacSign = "Libra";
                     break;
+
                 case 10:
                     if (dt.Day < 24)
                         WesternZodiacSign = "Libra";
                     else
                         WesternZodiacSign = "Scorpio";
                     break;
+
                 case 11:
                     if (dt.Day < 24)
                         WesternZodiacSign = "Scorpio";
                     else
                         WesternZodiacSign = "Sagittarius";
                     break;
+
                 case 12:
                     if (dt.Day < 23)
                         WesternZodiacSign = "Sagittarius";
                     else
                         WesternZodiacSign = "Capricorn";
                     break;
+
             }
         }
-        private void chineseZod(DateTime dt)
+        private void chineezeZod(DateTime dt)
         {
             switch ((dt.Year - 4) % 12)
             {
                 case 0:
                     ChineseZodiacSign = "Rat";
                     break;
+
                 case 1:
                     ChineseZodiacSign = "Ox";
                     break;
+
                 case 2:
                     ChineseZodiacSign = "Tiger";
                     break;
+
                 case 3:
                     ChineseZodiacSign = "Rabbit";
                     break;
+
                 case 4:
                     ChineseZodiacSign = "Dragon";
                     break;
+
                 case 5:
                     ChineseZodiacSign = "Snake";
                     break;
+
                 case 6:
                     ChineseZodiacSign = "Horse";
                     break;
+
                 case 7:
                     ChineseZodiacSign = "Goat";
                     break;
+
                 case 8:
                     ChineseZodiacSign = "Monkey";
                     break;
+
                 case 9:
                     ChineseZodiacSign = "Rooster";
                     break;
+
                 case 10:
                     ChineseZodiacSign = "Dog";
                     break;
+
                 case 11:
                     ChineseZodiacSign = "Pig";
                     break;
+
             }
         }
 
@@ -171,26 +195,41 @@ namespace DateCheck.ViewModels
             bool sameMonth = (currentDate.Month - date.DateTime.Month) == 0 ? true : false;
             bool sameDay = (currentDate.Day - date.DateTime.Day) == 0 ? true : false;
 
+            //Розрахуйте вік користувача.
+            //Виведіть вік користувача в TextBlock
             Age = ((currentDate.Month - date.DateTime.Month) < 1) ? currentDate.Year - date.DateTime.Year - 1 :
-                (sameMonth ? ((currentDate.Day - date.DateTime.Day) < 1 ? (currentDate.Year - date.DateTime.Year - 1) : (currentDate.Year - date.DateTime.Year)) : (currentDate.Year - date.DateTime.Year));
+                (sameMonth ? ((currentDate.Day - date.DateTime.Day) < 1 ? (currentDate.Year - date.DateTime.Year - 1) :
+                (currentDate.Year - date.DateTime.Year)) : (currentDate.Year - date.DateTime.Year));
+
+            //Перевірте, чи вік користувача правильний. Наприклад,
+            //якщо користувач ще не народився чи йому більше ніж 135 років, виведіть повідомлення про помилку.
+            //(використайте клас MessageBox для відображення)
             if (Age < 0 || Age > 135)
             {
                 throw new ArgumentException($"Birth date {date} is wrong!");
             }
+
+            //Якщо сьогодні день народження користувача, виведіть приємне повідомлення.
             if (sameMonth && sameDay)
+            {
                 MessageBox.Show($"Happy {Age}th birthday!");
-            chineseZod(date.DateTime);
-            westernZod(date.DateTime);
+            }
+
+            chineezeZod(date.DateTime);
+            zod(date.DateTime);
             OnPropertyChanged("Age");
             OnPropertyChanged("ChineseZodiacSign");
-            OnPropertyChanged("WesternZodiacSign");
+            OnPropertyChanged("ZodiacSign");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
+            {
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            }
         }
     }
 }
